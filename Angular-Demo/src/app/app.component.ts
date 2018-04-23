@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular Demo';
-  name = 'Importing name from component.ts';
+  name = '';
 }
