@@ -1,0 +1,9 @@
+<button class="btn btn-info" (click)="toggleDetail()">
+  Display Details
+</button>
+<h3 [ngStyle]="{display:toggle()}">Secret Password = Tuna</h3>
+<div class="count" *ngFor="let count of numberOfTimesClicked"
+    [ngStyle]="{backgroundColor: count >= 5 ? 'deepskyblue' : 'plum'}"
+    [ngClass]="{moreThanFive: count >= 5}">
+  {{count}}
+</div>
