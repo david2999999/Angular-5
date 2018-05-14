@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
       name: this.route.snapshot.params['name']
     };
 
+    // retrieving values from the url. The data will be retrieved reactively or Asynchronously
     this.route.params
       .subscribe(
         (params: Params) => {
