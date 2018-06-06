@@ -8,6 +8,7 @@ import {UsersComponent} from './users/users.component';
 import {UserComponent} from './users/user/user.component';
 import {EditServerComponent} from './servers/edit-server/edit-server.component';
 import {AuthGuardService} from './auth-guard.service';
+import {CanDeactivateGuardService} from './servers/edit-server/can-deactivate-guard.service';
 
 // the AuthGuardService protect the route depending if "loggedIn" is true
 // canActivate is for routes
@@ -23,7 +24,7 @@ const appRoutes: Routes = [
     component: ServersComponent,
     children: [
       { path: ':id', component: ServerComponent},
-      { path: ':id/edit', component: EditServerComponent}
+      { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuardService]}
     ]},
   { path: 'not-found', component: PageNotFoundComponent},
   { path: '**', redirectTo: '/not-found'}
