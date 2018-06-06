@@ -9,12 +9,19 @@ import {UserComponent} from './users/user/user.component';
 import {EditServerComponent} from './servers/edit-server/edit-server.component';
 import {AuthGuardService} from './auth-guard.service';
 
+// the AuthGuardService protect the route depending if "loggedIn" is true
+// canActivate is for routes
+// while canActivateChild is for the child routes
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'users', component: UsersComponent, children: [
       { path: ':id/:name', component: UserComponent}
     ]},
-  { path: 'servers', canActivate: [AuthGuardService], component: ServersComponent, children: [
+  { path: 'servers',
+    // canActivate: [AuthGuardService],
+    canActivateChild: [AuthGuardService],
+    component: ServersComponent,
+    children: [
       { path: ':id', component: ServerComponent},
       { path: ':id/edit', component: EditServerComponent}
     ]},
