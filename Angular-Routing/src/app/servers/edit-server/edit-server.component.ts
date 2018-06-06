@@ -20,6 +20,7 @@ export class EditServerComponent implements OnInit {
     console.log(this.route.snapshot.queryParams);
     console.log(this.route.snapshot.fragment);
 
+    // subscribe basically react to changes in the url
     this.route.queryParams
       .subscribe(
         (queryParams: Params) => {
