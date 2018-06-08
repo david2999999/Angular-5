@@ -9,6 +9,7 @@ import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
+import {UsersService} from './users.service';
 
 
 
@@ -24,7 +25,7 @@ import {AppRoutingModule} from './app-routing.module';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
