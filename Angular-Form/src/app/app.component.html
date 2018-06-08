@@ -23,6 +23,7 @@
                     required
                     email>
           </div>
+          <p *ngIf="">Please enter a valid value!</p>
           <div class="form-group">
             <label for="secret">Secret Questions</label>
             <select id="secret"
@@ -34,7 +35,10 @@
             </select>
           </div>
         </div>
-        <button class="btn btn-success" type="submit">Submit</button>
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="!f.valid" >Submit</button>
       </form>
     </div>
   </div>
