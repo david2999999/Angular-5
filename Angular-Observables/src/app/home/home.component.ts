@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import {Observer} from 'rxjs/Observer';
 import {Subscription} from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // emit value in sequence every 1 second
-    const myNumbers = Observable.interval(1000);
+    const myNumbers = Observable.interval(1000)
+      .map(
+        (data: number) => {
+          return data * 2;
+        }
+      );
 
     // output: 0,1,2,3,4,5....
     this.numbersObsSubscription = myNumbers.subscribe(
