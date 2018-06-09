@@ -13,8 +13,12 @@ export class ShoppingListService {
     new Ingredient('Salt', 2)
   ];
 
- getIngredient() {
+ getIngredients() {
    return this.ingredients.slice();
+ }
+
+ getIngredient(index: number) {
+   return this.ingredients[index];
  }
 
  addIngredient(ingredient: Ingredient) {
