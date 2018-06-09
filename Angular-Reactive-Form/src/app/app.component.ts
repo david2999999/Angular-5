@@ -21,6 +21,20 @@ export class AppComponent implements OnInit{
       'gender': new FormControl('male'),
       'hobbies': new FormArray([])
     });
+
+    // this will run will every keystroke on the form inputs
+    // this.signupForm.valueChanges.subscribe(
+    //   (value) => {
+    //     console.log(value);
+    //   }
+    // );
+
+    // checks the status of the form, whether it is valid, pending or invalid
+    this.signupForm.statusChanges.subscribe(
+      (status) => {
+        console.log(status);
+      }
+    );
   }
 
   onSubmit() {
