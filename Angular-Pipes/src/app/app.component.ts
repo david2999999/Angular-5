@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {P} from '@angular/core/src/render3';
+import {reject} from 'q';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,12 @@ import {P} from '@angular/core/src/render3';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  appStatus = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('stable');
+    }, 2000);
+  });
+
   servers = [
     {
       instanceType: 'medium',
