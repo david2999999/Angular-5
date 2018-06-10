@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {P} from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-root',
@@ -40,5 +41,14 @@ export class AppComponent {
       'list-group-item-warning': server.status === 'offline',
       'list-group-item-danger': server.status === 'critical'
     };
+  }
+
+  onAddServer() {
+    this.servers.push({
+      instanceType: 'small',
+      name: 'New server',
+      status: 'stable',
+      started: new Date()
+    });
   }
 }
