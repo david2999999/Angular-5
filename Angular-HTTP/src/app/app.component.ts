@@ -8,6 +8,7 @@ import {Response} from '@angular/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  appName = this.serverService.getAppName();
   servers = [
     {
       name: 'Testserver',
@@ -60,4 +61,5 @@ export class AppComponent {
   private generateId() {
     return Math.round(Math.random() * 10000);
   }
+
 }

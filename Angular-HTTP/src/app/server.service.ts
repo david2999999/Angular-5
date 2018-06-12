@@ -26,7 +26,8 @@ export class ServerService {
   }
 
   getServers() {
-    return this.http.get('https://angular-udemy-course.firebaseio.com/data')
+    // using .pipe() because of Angular CLI 6+ without rxjs-compact
+    return this.http.get('https://angular-udemy-course.firebaseio.com/data.json')
       .pipe( map((response: Response) => {
           const data = response.json();
           for (const server of data) {
@@ -40,7 +41,8 @@ export class ServerService {
       }
     ));
 
-    // return this.http.get('https://angular-udemy-course.firebaseio.com/data').
+    // just an example if not using angular CLI 6+
+    // return this.http.get('https://angular-udemy-course.firebaseio.com/data.json').
     //    map((response: Response) => {
     //       const data = response.json();
     //       for (const server of data) {
@@ -53,5 +55,14 @@ export class ServerService {
     //       return Observable.throw(error);
     //     }
     //   );
+  }
+
+  getAppName() {
+    return this.http.get('https://angular-udemy-course.firebaseio.com/data/appName.json')
+      .pipe(map(
+        (response: Response) => {
+          return response.json();
+        }
+      ));
   }
 }
