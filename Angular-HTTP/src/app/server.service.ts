@@ -27,7 +27,12 @@ export class ServerService {
   getServers() {
     return this.http.get('https://angular-udemy-course.firebaseio.com/data.json')
       .pipe( map((response: Response) => {
-          return response.json();
+          const data = response.json();
+          for (const server of data) {
+            server.name = 'FETCHED_' + server.name;
+          }
+
+          return data;
         }
       ));
   }
