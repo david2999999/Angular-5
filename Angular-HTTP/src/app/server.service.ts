@@ -15,6 +15,14 @@ export class ServerService {
       servers, {headers: headers});
   }
 
+  overrideServer(servers: any[]) {
+    const headers = new Headers({'Content-Type': 'application/json'});
+
+    // in firebase, this will overwrite the existing data
+    return this.http.put('https://angular-udemy-course.firebaseio.com/data.json',
+      servers, {headers: headers});
+  }
+
   getServers() {
     return this.http.get('https://angular-udemy-course.firebaseio.com/data.json');
   }

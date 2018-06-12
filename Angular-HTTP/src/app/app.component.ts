@@ -34,6 +34,14 @@ export class AppComponent {
       );
   }
 
+  overrideServer() {
+    this.serverService.overrideServer(this.servers)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+  }
+
   onGet() {
     this.serverService.getServers().
       subscribe(
