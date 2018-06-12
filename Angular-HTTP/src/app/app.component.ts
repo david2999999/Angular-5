@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ServerService} from './server.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,20 @@ export class AppComponent {
       id: this.generateId()
     }
   ];
+
+  constructor(private serverService: ServerService) {}
+
+  onSave() {
+    // when this function is runned, the function returns an observable
+    // the post request has not been sent yet
+    // when the subscribe method is called, the post request has completed and waits for a response or error msg
+    this.serverService.storeServers(this.servers)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
+  }
+
   onAddServer(name: string) {
     this.servers.push({
       name: name,
