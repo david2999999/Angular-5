@@ -14,18 +14,19 @@ export class DataStorageService {
   }
 
   getRecipes() {
+    // when we delete all ingredients and save the recipe to the firebase
+    // the ingredient field will be empty
+    // this will cause errors when try to add ingredients again when the recipe
+    // is retrieved again, so we used map to transform the data to get new array for recipe[ingredient]
     return this.http.get('https://angular-udemy-course.firebaseio.com/recipes.json')
       .map(
         (response: Response) => {
           const recipes: Recipe[] = response.json();
           for (const recipe of recipes) {
             if (!recipe['ingredients']) {
-              console.log(recipe);
-              recipes['ingredients'] = ['hello'];
-              console.log(recipe);
+              recipe['ingredients'] = [];
             }
           }
-
           return recipes;
         }
       ).
