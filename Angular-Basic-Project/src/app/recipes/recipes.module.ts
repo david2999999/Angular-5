@@ -7,6 +7,7 @@ import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
 import {RecipeItemComponent} from './recipe-list/recipe-item/recipe-item.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {RecipeRoutingModule} from './recipe-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {CommonModule} from '@angular/common';
     // the commonModule gives access to common directives like ngClass, ngFor etc
     // chances that every module will be using these
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecipeRoutingModule
   ]
 })
 export class RecipesModule {
