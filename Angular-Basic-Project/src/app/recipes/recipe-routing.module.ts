@@ -17,6 +17,7 @@ const recipesRoutes: Routes = [
 
 @NgModule({
   imports: [
+    // use .forChild for modules other than app.modules
     RouterModule.forChild(recipesRoutes)
   ],
   exports: [
