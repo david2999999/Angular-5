@@ -24,9 +24,14 @@ export class DataStorageService {
     // the ingredient field will be empty
     // this will cause errors when try to add ingredients again when the recipe
     // is retrieved again, so we used map to transform the data to get new array for recipe[ingredient]
-    return this.httpClient.get<Recipe[]>('https://angular-udemy-course.firebaseio.com/recipes.json?auth=' + token)
+    // this.httpClient.get<Recipe[]>('https://angular-udemy-course.firebaseio.com/recipes.json?auth=' + token)
+    this.httpClient.get<Recipe[]>('https://angular-udemy-course.firebaseio.com/recipes.json?auth=' + token, {
+      observe: 'body',
+      responseType: 'json'
+    })
       .map(
         (recipes) => {
+          console.log(recipes);
           for (const recipe of recipes) {
             if (!recipe['ingredients']) {
               recipe['ingredients'] = [];
