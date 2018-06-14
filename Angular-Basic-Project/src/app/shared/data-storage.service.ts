@@ -3,7 +3,7 @@ import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
 import 'rxjs/add/operator/map';
 import {AuthService} from '../auth/auth.service';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
 
 @Injectable()
 export class DataStorageService {
@@ -16,12 +16,20 @@ export class DataStorageService {
     // just an example of how to set the header
     // const header = new HttpHeaders().set('Authorization', 'Bearer asdqwdqwd');
 
-    return this.httpClient.put('https://angular-udemy-course.firebaseio.com/recipes.json',
-      this.recipeService.getRecipes(),
-      {observe: 'body', params: new HttpParams().set('auth', token)});
+    // return this.httpClient.put('https://angular-udemy-course.firebaseio.com/recipes.json',
+    //   this.recipeService.getRecipes(),
+    //   {observe: 'body', params: new HttpParams().set('auth', token)});
 
     // to add a header
     // {observe: 'body', headers: header});
+
+    // only this kind of request can be used to see the progress of a request
+    const request = new HttpRequest('PUT', 'https://angular-udemy-course.firebaseio.com/recipes.json',
+      this.recipeService.getRecipes(),
+      {reportProgress: true,
+            params: new HttpParams().set('auth', token)});
+
+    return this.httpClient.request(request);
   }
 
   getRecipes() {
