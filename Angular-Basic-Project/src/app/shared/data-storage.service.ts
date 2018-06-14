@@ -3,7 +3,7 @@ import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
 import 'rxjs/add/operator/map';
 import {AuthService} from '../auth/auth.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class DataStorageService {
@@ -13,8 +13,15 @@ export class DataStorageService {
   storeRecipes() {
     const token = this.authService.getToken();
 
+    // just an example of how to set the header
+    // const header = new HttpHeaders().set('Authorization', 'Bearer asdqwdqwd');
+
     return this.httpClient.put('https://angular-udemy-course.firebaseio.com/recipes.json?auth=' + token,
-      this.recipeService.getRecipes(), {observe: 'body'});
+      this.recipeService.getRecipes(),
+      {observe: 'body'});
+
+    // to add a header
+    // {observe: 'body', headers: header});
   }
 
   getRecipes() {
