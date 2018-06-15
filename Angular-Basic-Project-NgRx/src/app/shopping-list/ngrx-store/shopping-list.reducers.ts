@@ -1,6 +1,5 @@
 import {Ingredient} from '../../shared/ingredient.model';
 import * as ShoppingListActions from './shopping-list.action';
-import {ADD_INGREDIENTS} from './shopping-list.action';
 
 // state is the current state of the application
 // at the beginning there are no states, so we initialize the state
@@ -20,11 +19,36 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         ...state,
         ingredients: [...state.ingredients, action.payload]
       };
+
     case ShoppingListActions.ADD_INGREDIENTS:
       return {
         ...state,
         ingredients: [...state.ingredients, ...action.payload]
       };
+
+    case ShoppingListActions.UPDATE_INGREDIENT:
+      const ingredient = state.ingredients[action.payload.index];
+      // ...action.payload.ingredient will replace ...ingredient
+      const updatedIngredient = {
+        ...ingredient,
+        ...action.payload.ingredient
+      };
+
+      const ingredients = [...state.ingredients];
+      ingredients[action.payload.index] = updatedIngredient;
+      return {
+        ...state,
+        ingredients: ingredients
+      };
+
+    case ShoppingListActions.DELETE_INGREDIENT:
+      const oldIngredients = [...state.ingredients];
+      oldIngredients.splice(action.payload, 1);
+      return {
+        ...state,
+        ingredients: oldIngredients
+      };
+
     default:
       return state;
   }
