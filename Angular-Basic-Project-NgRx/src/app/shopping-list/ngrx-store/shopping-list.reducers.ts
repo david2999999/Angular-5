@@ -1,6 +1,6 @@
-import {Action} from '@ngrx/store';
 import {Ingredient} from '../../shared/ingredient.model';
 import {ADD_INGREDIENT} from './shopping-list.action';
+import * as ShoppingListActions from './shopping-list.action';
 
 // state is the current state of the application
 // at the beginning there are no states, so we initialize the state
@@ -11,14 +11,16 @@ const initialState = {
   ]
 };
 
-export function shoppingListReducer(state = initialState, action: Action) {
+export function shoppingListReducer(state = initialState, action: ShoppingListActions.ShoppingListAction) {
   switch (action.type) {
-    case ADD_INGREDIENT:
+    case ShoppingListActions.ADD_INGREDIENT:
       return {
         // this is the spread operator which expands the old states, so all properties are added
+        // returns a copy of the state and also a new list of ingredients, current ingredient + new ingredient
         ...state,
-        ingredients: [...state.ingredients, action]
-      }
+        ingredients: [...state.ingredients, action.payload]
+      };
+    default:
+      return state;
   }
-  return state;
 }
