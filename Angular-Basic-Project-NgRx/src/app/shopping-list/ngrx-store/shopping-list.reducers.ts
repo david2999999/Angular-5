@@ -1,5 +1,4 @@
 import {Ingredient} from '../../shared/ingredient.model';
-import {ADD_INGREDIENT} from './shopping-list.action';
 import * as ShoppingListActions from './shopping-list.action';
 
 // state is the current state of the application
@@ -15,7 +14,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
   switch (action.type) {
     case ShoppingListActions.ADD_INGREDIENT:
       return {
-        // this is the spread operator which expands the old states, so all properties are added
+        // this is the spread operator that creates a shallow copy of the state
         // returns a copy of the state and also a new list of ingredients, current ingredient + new ingredient
         ...state,
         ingredients: [...state.ingredients, action.payload]
