@@ -4,6 +4,7 @@ import {NgForm} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as AuthActions from '../ngrx-store/auth.actions';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
