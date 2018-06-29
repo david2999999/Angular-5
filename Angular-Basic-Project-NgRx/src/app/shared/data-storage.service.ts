@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
 import 'rxjs/add/operator/map';
-import {AuthService} from '../auth/auth.service';
 import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from '@angular/common/http';
 
 @Injectable()
 export class DataStorageService {
 
-  constructor(private httpClient: HttpClient, private recipeService: RecipeService, private authService: AuthService) { }
+  constructor(private httpClient: HttpClient, private recipeService: RecipeService) { }
 
   storeRecipes() {
     // just an example of how to set the header
