@@ -1,6 +1,7 @@
 import {Actions, Effect} from '@ngrx/effects';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import { fromPromise } from 'rxjs/observable/fromPromise';
@@ -56,6 +57,12 @@ export class AuthEffects {
       ];
     });
 
+  @Effect({ dispatch: false })
+  authLogout = this.actions$
+    .ofType(AuthActions.LOGOUT)
+    .do(() => {
+      this.router.navigate(['/']);
+    });
   // the $ means its an observable
   constructor(private actions$: Actions, private router: Router) {
   }
