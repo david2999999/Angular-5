@@ -55,6 +55,12 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
           transform: 'translateX(-100px)'
         }),
         animate(300)
+      ]),
+      transition('* => void', [
+        animate(300, style({
+          transform: 'translateX(100px)',
+          opacity: 0
+        }))
       ])
     ]),
   ]
@@ -75,5 +81,9 @@ export class AppComponent {
 
   onAdd(item) {
     this.list.push(item);
+  }
+
+  onDelete(index) {
+    this.list.splice(index,1);
   }
 }
